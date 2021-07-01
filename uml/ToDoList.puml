@@ -6,6 +6,21 @@ class ToDoList {
     start()
 }
 class ToDoListController {
+    addToDoListButtonClicked()
+    removeToDoListButtonClicked()
+    editToDoListTitleButtonClicked()
+    addItemButtonClicked()
+    removeItemButtonClicked()
+    editItemDescriptionButtonClicked()
+    editItemDueDateButtonClicked()
+    markItemCompleteButtonClicked()
+    displayAllItemsButtonClicked()
+    displayIncompletionsButtonClicked()
+    displayCompletionsButtonClicked()
+    saveItemsButtonClicked()
+    saveAllItemsButtonClicked()
+    loadSingleToDoListButtonClicked()
+    loadMultToDoListButtonClicked()
 }
 
 javafx.Application <|-- ToDoList

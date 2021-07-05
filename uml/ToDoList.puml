@@ -2,25 +2,43 @@
 'https://plantuml.com/class-diagram
 
 class ToDoList {
-    main()
-    start()
+    + main()
+    + start()
 }
 class ToDoListController {
-    addToDoListButtonClicked()
-    removeToDoListButtonClicked()
-    editToDoListTitleButtonClicked()
-    addItemButtonClicked()
-    removeItemButtonClicked()
-    editItemDescriptionButtonClicked()
-    editItemDueDateButtonClicked()
-    markItemCompleteButtonClicked()
-    displayAllItemsButtonClicked()
-    displayIncompletionsButtonClicked()
-    displayCompletionsButtonClicked()
-    saveItemsButtonClicked()
-    saveAllItemsButtonClicked()
-    loadSingleToDoListButtonClicked()
-    loadMultToDoListButtonClicked()
+    - textDisplay: TextField
+
+    + addToDoListButtonClicked()
+    + removeToDoListButtonClicked()
+    + editToDoListTitleButtonClicked()
+    + addItemButtonClicked()
+    + removeItemButtonClicked()
+    + editItemDescriptionButtonClicked()
+    + editItemDueDateButtonClicked()
+    + markItemCompleteButtonClicked()
+    + displayAllItemsButtonClicked()
+    + displayIncompletionsButtonClicked()
+    + displayCompletionsButtonClicked()
+    + saveItemsButtonClicked()
+    + saveAllItemsButtonClicked()
+    + loadSingleToDoListButtonClicked()
+    + loadMultToDoListButtonClicked()
+
+    + addToDoList()
+    + removeToDoList()
+    + editToDoListTitle()
+    + addItem()
+    + removeItem()
+    + editItemDescription()
+    + editItemDueDate()
+    + markItemComplete()
+    + displayAllItems()
+    + displayIncompletions()
+    + displayCompletions()
+    + saveItems()
+    + saveAllItems()
+    + loadSingleToDoList()
+    + loadMultToDoList()
 }
 
 javafx.Application <|-- ToDoList

@@ -6,120 +6,158 @@ import javafx.scene.control.TextField;
 
 public class ToDoListController {
     @FXML
-    private TextField resultDisplay;
+    private TextField textDisplay;
 
     @FXML
     public void addToDoListButtonClicked(ActionEvent actionEvent) {
-        //click the Add ToDoList button
-        //prompt text file
-        //get the name of the ToDoList the user would like to add
-        //add to the list
-
         addToDoList();
     }
 
     @FXML
     public void removeToDoListButtonClicked(ActionEvent actionEvent) {
-        //click the Remove ToDoList button
-        //prompt text file
-        //get the name of the ToDoList the user would like to remove
-        //remove from the list
+        removeToDoList();
     }
 
     @FXML
     public void editToDoListTitleButtonClicked(ActionEvent actionEvent) {
-        //click the Edit ToDoList Title button
-        //prompt text file that displays the ToDoLists and their corresponding number in the list
-        //get the corresponding number to the ToDoList title the user would like to change
-        //get the new ToDoList title
-        //change the ToDoList title
+        editToDoListTitle();
     }
 
     @FXML
     public void addItemButtonClicked(ActionEvent actionEvent) {
-        //click the Add Item To ToDoList button
-        //prompt text file that displays the ToDoLists and their corresponding number in the list
-        //get the corresponding number to the ToDoList the user would like to see
-        //get the item the user wishes to add
-        //add item to ToDoList
+        addItem();
     }
 
     @FXML
     public void removeItemButtonClicked(ActionEvent actionEvent) {
-        //click the Remove Item From ToDoList button
-        //prompt text file that displays the ToDoLists and their corresponding number in the list
-        //get the corresponding number to the ToDoList the user would like to see
-        //get the item the user wishes to remove
-        //remove item from ToDoList
+        removeItem();
     }
 
     @FXML
     public void editItemDescriptionButtonClicked(ActionEvent actionEvent) {
-        //click the Edit Item Description button
-        //prompt text file that displays the ToDoLists and their corresponding number in the list
-        //get the corresponding number to the ToDoList the user would like to see
-        //get the item the user wishes to change the description of
-        //get the new description
-        //change the item description
+        editItemDescription();
     }
 
     @FXML
     public void editItemDueDateButtonClicked(ActionEvent actionEvent) {
-        //click the Edit Item Due Date button
-        //prompt text file that displays the ToDoLists and their corresponding number in the list
-        //get the corresponding number to the ToDoList the user would like to see
-        //get the item the user wishes to change the due date of
-        //get the new due date
-        //change the item due date
+        editItemDueDate();
     }
 
     @FXML
     public void markItemCompleteButtonClicked(ActionEvent actionEvent) {
-        //click the Mark Item As Complete button
-        //prompt text file that displays the ToDoLists and their corresponding number in the list
-        //get the corresponding number to the ToDoList the user would like to see
-        //get the item the user wishes to mark complete
-        //mark the item as complete
-        // - use a boolean complete value in the item
+        markItemComplete();
     }
 
     @FXML
     public void displayAllItemsButtonClicked(ActionEvent actionEvent) {
-        //click the Display All Items button
-        //create a text file that displays each ToDoList and their corresponding items, due dates, whether or not they're complete, and their description
+        displayAllItems();
     }
 
     @FXML
     public void displayIncompletionsButtonClicked(ActionEvent actionEvent) {
-        //click the Display Incompletions button
-        //create a new list for each ToDoList that only displays their incompletions
-        //create a text file that displays all incompleted items in each ToDoList
+        displayIncompletions();
     }
 
     @FXML
     public void displayCompletionsButtonClicked(ActionEvent actionEvent) {
-        //click the Display Completions button
-        //create a new list for each ToDoList that only displays their completions
-        //create a text file that displays all completed items in each ToDoList
+        displayCompletions();
     }
 
     @FXML
     public void saveItemsButtonClicked(ActionEvent actionEvent) {
+        saveItems();
     }
 
     @FXML
     public void saveAllItemsButtonClicked(ActionEvent actionEvent) {
+        saveAllItems();
     }
 
     @FXML
     public void loadSingleToDoListButtonClicked(ActionEvent actionEvent) {
+        loadSingleToDoList();
     }
 
     @FXML
     public void loadMultToDoListButtonClicked(ActionEvent actionEvent) {
+        loadMultToDoList();
     }
 
     public void addToDoList(){
-        resultDisplay.setText("");
+        //add a list of the same string as textDisplay
+    }
+
+    public void removeToDoList(){
+        //remove a list of the same string as textDisplay
+    }
+
+    public void editToDoListTitle(){
+        //receive the name of the ToDoList from textDisplay
+        //clear the display and prompt the user to enter the new name
+        //change String name in List <Object ToDoList>
+    }
+
+    public void addItem(){
+        //receive name of ToDoList the user would like to edit from textDisplay
+        //clear the display and prompt the user to enter the item added
+        //clear the display and prompt the user to enter the date (YYYY-MM-DD)
+        //clear the display and prompt the user to enter a description
+        //add item to ToDoList
+    }
+
+    public void removeItem(){
+        //receive name of ToDoList the user would like to edit from textDisplay
+        //clear the display and prompt the user to enter the item they should remove
+        //if the item is in the add item to ToDoList
+    }
+
+    public void editItemDescription(){
+        //receive name of ToDoList the user would like to edit from textDisplay
+        //clear the display and prompt the user to enter the item they should edit
+        //clear the display and prompt the user to enter the item description
+        //set the item description
+    }
+
+    public void editItemDueDate(){
+        //receive name of ToDoList the user would like to edit from textDisplay
+        //clear the display and prompt the user to enter the item they should edit
+        //clear the display and prompt the user to enter the item due date
+        //set the item due date
+    }
+    public void markItemComplete(){
+        //receive the name of the ToDoList the user would like to edit from textDisplay
+        //clear the display and prompt the user to enter the item they should mark
+        //change the boolean complete value in the item list to true
+    }
+
+    public void displayAllItems(){
+        //display the lists useing nested for loops and string format
+        // - take from json
+    }
+
+    public void displayIncompletions(){
+        // call displayItem
+        // if boolean completion is false ... display the item
+    }
+
+    public void displayCompletions(){
+        // call displayItem
+        // if boolean completion is true ... display the item
+    }
+
+    public void saveItems(){
+        //save changes in a single ToDoList to json
+        // - refer to TAs and the internet
+    }
+
+    public void saveAllItems(){
+        //save changes in all ToDoLists to json
+    }
+
+    public void loadSingleToDoList(){
+        //consult with office hours
+    }
+    public void loadMultToDoList(){
+        //consult with office hours
     }
 }

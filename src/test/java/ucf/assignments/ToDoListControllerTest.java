@@ -11,74 +11,101 @@ class ToDoListControllerTest {
         //make a new to do list controller
         //initialize addToDoListButtonClicked to some non-blank value
         //call the addToDoList function
-        //get the ToDoList you wish to add
-        //assert that the new ToDoList was added to the list of ToDoLists
-        // - look at 1:22:11 in the Monday lecture
+        //get the value resultDisplay
+        //assert that the new ToDoList was added to the list of ToDoList
     }
 
     @Test
-    void removeToDoListButtonClicked() {
-
+    void removeToDoList(){
+        //make a new to do list controller
+        //initialize removeToDoListButtonClicked to some non-blank value
+        //call the removeToDoList function
+        //get the value resultDisplay
+        //assert that the new ToDoList was removed to the list of ToDoList
     }
 
     @Test
-    void editToDoListTitleButtonClicked() {
-
+    void editToDoListTitle(){
+        //make a new to do list controller
+        //initialize editToDoListTitleButtonClicked
+        //call the editToDoListTitle function
+        //get the value resultDisplay
+        //assert that the new ToDoList title equals the resultDisplay value
     }
 
     @Test
-    void addItemButtonClicked() {
-
+    void addItem(){
+        //make a new ToDoList using addToDoList()
+        //call addItem()
+        //assert the ToDoList has the same item as textDisplay
     }
 
     @Test
-    void removeItemButtonClicked() {
-
+    void removeItem(){
+        //hard code a ToDoList with an item
+        //call removeItem() and remove the same item
+        //assert that the ToDoList is blank
     }
 
     @Test
-    void editItemDescriptionButtonClicked() {
-
+    void editItemDescription(){
+        //hard code a ToDoList with an item and description
+        //call editItemDescription() and enter the new description
+        //assert that the item description is equal to textDisplay
     }
 
     @Test
-    void editItemDueDateButtonClicked() {
-
+    void editItemDueDate(){
+        //hard code a ToDoList with an item and due date
+        //call editItemDueDate() and enter the new due date
+        //assert that the item due date is equal to textDisplay
     }
 
     @Test
-    void markItemCompleteButtonClicked() {
-
+    void markItemComplete(){
+        //hard code a ToDoList with an item that has boolean complete false
+        //call markItemComplete() and enter the ToDoList and item
+        //assert that the boolean value is true
     }
 
     @Test
-    void displayAllItemsButtonClicked() {
-
+    void displayAllItems(){
+        //hardcode several ToDoLists
+        //ensure that the output follows a string format
     }
 
     @Test
-    void displayIncompletionsButtonClicked() {
-
+    void displayIncompletions(){
+        //hardcode several ToDoLists with at least one considered complete and incomplete by boolean complete either...
+        //...being true or false respectively
+        //assert that the print is only incomplete tasks
     }
 
     @Test
-    void displayCompletionsButtonClicked() {
-
+    void displayCompletions(){
+        //hardcode several ToDoLists with at least one considered complete and incomplete by boolean complete either...
+        //...being true or false respectively
+        //assert that the print is only completed tasks
     }
 
     @Test
-    void saveItemsButtonClicked() {
+    void saveItems(){
+        //consult TAs
     }
 
     @Test
-    void saveAllItemsButtonClicked() {
+    void saveAllItems(){
+        //consult TAs
     }
 
     @Test
-    void loadSingleToDoListButtonClicked() {
+    void loadSingleToDoList(){
+        //consult TAs
     }
 
     @Test
-    void loadMultToDoListButtonClicked() {
+    void loadMultToDoList(){
+        //consult TAs
     }
+
 }

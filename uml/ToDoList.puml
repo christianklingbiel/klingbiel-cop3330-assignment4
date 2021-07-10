@@ -5,12 +5,15 @@ class ToDoList {
     + main()
     + start()
 }
+
+class ToDo {
+    - Title: String
+    - Items: String[]
+}
+
 class ToDoListController {
     - textDisplay: TextField
 
-    + addToDoListButtonClicked()
-    + removeToDoListButtonClicked()
-    + editToDoListTitleButtonClicked()
     + addItemButtonClicked()
     + removeItemButtonClicked()
     + editItemDescriptionButtonClicked()
@@ -24,9 +27,6 @@ class ToDoListController {
     + loadSingleToDoListButtonClicked()
     + loadMultToDoListButtonClicked()
 
-    + addToDoList()
-    + removeToDoList()
-    + editToDoListTitle()
     + addItem()
     + removeItem()
     + editItemDescription()
@@ -44,5 +44,7 @@ class ToDoListController {
 javafx.Application <|-- ToDoList
 
 ToDoList - ToDoListController
+
+ToDoListController *-- ToDo
 
 @enduml

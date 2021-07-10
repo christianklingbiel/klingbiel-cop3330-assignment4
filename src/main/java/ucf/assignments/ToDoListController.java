@@ -9,24 +9,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ToDoListController {
-    @FXML
-    private TextField textDisplay;
+
+    ToDoItem t = new ToDoItem();
+    List<ToDoItem> list = new ArrayList<>();
 
     @FXML
-    public void addToDoListButtonClicked(ActionEvent actionEvent) {
-        addToDoList();
-    }
+    private TextField textOutput;
 
     @FXML
-    public void removeToDoListButtonClicked(ActionEvent actionEvent) {
-        removeToDoList();
-    }
+    private TextField textName;
 
     @FXML
-    public void editToDoListTitleButtonClicked(ActionEvent actionEvent) {
-        editToDoListTitle();
-    }
+    private TextField textDesc;
+
+    @FXML
+    private TextField textDate;
 
     @FXML
     public void addItemButtonClicked(ActionEvent actionEvent) {
@@ -39,13 +40,13 @@ public class ToDoListController {
     }
 
     @FXML
-    public void editItemDescriptionButtonClicked(ActionEvent actionEvent) {
-        editItemDescription();
+    public void editDescriptionButtonClicked(ActionEvent actionEvent) {
+        editDescription();
     }
 
     @FXML
-    public void editItemDueDateButtonClicked(ActionEvent actionEvent) {
-        editItemDueDate();
+    public void editDueDateButtonClicked(ActionEvent actionEvent) {
+        editDueDate();
     }
 
     @FXML
@@ -74,56 +75,76 @@ public class ToDoListController {
     }
 
     @FXML
-    public void saveAllItemsButtonClicked(ActionEvent actionEvent) {
-        saveAllItems();
-    }
-
-    @FXML
-    public void loadSingleToDoListButtonClicked(ActionEvent actionEvent) {
-        loadSingleToDoList();
-    }
-
-    @FXML
-    public void loadMultToDoListButtonClicked(ActionEvent actionEvent) {
-        loadMultToDoList();
-    }
-
-    public void addToDoList(){
-        //add a list of the same string as textDisplay
-    }
-
-    public void removeToDoList(){
-        //remove a list of the same string as textDisplay
-    }
-
-    public void editToDoListTitle(){
-        //receive the name of the ToDoList from textDisplay
-        //clear the display and prompt the user to enter the new name
-        //change String name in List <Object ToDoList>
+    public void loadListButtonClicked(ActionEvent actionEvent) {
+        loadList();
     }
 
     public void addItem(){
-        //receive name of ToDoList the user would like to edit from textDisplay
-        //clear the display and prompt the user to enter the item added
-        //clear the display and prompt the user to enter the date (YYYY-MM-DD)
-        //clear the display and prompt the user to enter a description
+        //get items from TextField
+        t.name = getText(textName);
+        t.date = getText(textDesc);
+        t.desc = getText(textDate);
+
+        t.complete = false;
+
         //add item to ToDoList
+        if(!t.name.isEmpty()){
+            list.add(t);
+            if(list.contains(t))
+                setTextOutput("Task added successfully.");
+            else setTextOutput("Couldn't add task.");
+        }
+        else setTextOutput("Enter a task name.");
+        clearText(textName);
+        clearText(textDesc);
+        clearText(textDate);
     }
 
     public void removeItem(){
-        //receive name of ToDoList the user would like to edit from textDisplay
-        //clear the display and prompt the user to enter the item they should remove
-        //if the item is in the add item to ToDoList
+        //get item from TextField
+        t.name = getText(textName);
+
+        //if the item is in the list, remove it
+        for(int i = 0;i < list.size();i++){
+            if (t.name.equalsIgnoreCase(list.get(i).name)){
+                list.remove(t);
+                i--;
+                setTextOutput(getText(textName) + " removed successfully.");
+            }
+            else if (!(t.name.equalsIgnoreCase(list.get(i).name)))
+                setTextOutput(getText(textName) + " wasn't found in the list.");
+        }
+
+        clearText(textName);
+        clearText(textDesc);
+        clearText(textDate);
     }
 
-    public void editItemDescription(){
-        //receive name of ToDoList the user would like to edit from textDisplay
-        //clear the display and prompt the user to enter the item they should edit
-        //clear the display and prompt the user to enter the item description
-        //set the item description
+    public void editDescription(){
+        //receive items from user
+        t.name = getText(textName);
+        t.desc = getText(textDesc);
+
+        //test whether inputs are correct
+        if (t.name.isEmpty() || t.desc.isEmpty())
+            setTextOutput("Enter name and new desc.");
+
+        else{
+            //test whether the task is in the list and change its description
+            for (ToDoItem toDoItem : list) {
+                if (toDoItem.name.equalsIgnoreCase(t.name)) {
+                    toDoItem.desc = t.desc;
+                    setTextOutput("Description was changed.");
+                } else setTextOutput("Couldn't find task.");
+            }
+        }
+
+
+        clearText(textName);
+        clearText(textDesc);
     }
 
-    public void editItemDueDate(){
+    public void editDueDate(){
         //receive name of ToDoList the user would like to edit from textDisplay
         //clear the display and prompt the user to enter the item they should edit
         //clear the display and prompt the user to enter the item due date
@@ -159,10 +180,16 @@ public class ToDoListController {
         //save changes in all ToDoLists to json
     }
 
-    public void loadSingleToDoList(){
+    public void loadList(){
         //consult with office hours
     }
-    public void loadMultToDoList(){
-        //consult with office hours
+    public String getText(TextField t){
+        return t.getText();
+    }
+    public void setTextOutput(String text){
+        textOutput.setText(text);
+    }
+    public void clearText(TextField t){
+        t.setText("");
     }
 }

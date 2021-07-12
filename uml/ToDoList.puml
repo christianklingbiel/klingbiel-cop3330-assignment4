@@ -12,33 +12,41 @@ class ToDo {
 }
 
 class ToDoListController {
-    - textDisplay: TextField
+    t: ToDoItem
+    list: List<ToDoItem>
+    - textOutput: TextField
+    - textName: TextField
+    - textDesc: TextField
+    - textDate: TextField
+    - textComplete: TextField
 
     + addItemButtonClicked()
     + removeItemButtonClicked()
-    + editItemDescriptionButtonClicked()
-    + editItemDueDateButtonClicked()
+    + editDescriptionButtonClicked()
+    + editDueDateButtonClicked()
     + markItemCompleteButtonClicked()
     + displayAllItemsButtonClicked()
-    + displayIncompletionsButtonClicked()
+    + displayIncompleteButtonClicked()
     + displayCompletionsButtonClicked()
     + saveItemsButtonClicked()
-    + saveAllItemsButtonClicked()
-    + loadSingleToDoListButtonClicked()
-    + loadMultToDoListButtonClicked()
+    + loadListButtonClicked()
+    + clearListButtonClicked()
 
     + addItem()
     + removeItem()
-    + editItemDescription()
-    + editItemDueDate()
+    + clearList()
+    + editDescription()
+    + editDueDate()
     + markItemComplete()
     + displayAllItems()
-    + displayIncompletions()
+    + displayIncomplete()
     + displayCompletions()
     + saveItems()
-    + saveAllItems()
-    + loadSingleToDoList()
-    + loadMultToDoList()
+    + loadList()
+    + getText(TextField t)
+    + setTextOutput(String text)
+    + clearText(TextField t)
+    +
 }
 
 javafx.Application <|-- ToDoList

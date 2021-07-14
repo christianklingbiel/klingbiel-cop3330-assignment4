@@ -5,22 +5,20 @@ package ucf.assignments;
  *  Copyright 2021 Christian Klingbiel
  */
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ToDoListController {
-
-    ToDoItem t = new ToDoItem();
     List<ToDoItem> list = new ArrayList<>();
 
     @FXML
     private TextField textOutput;
-
-    @FXML
-    private TextField textName;
 
     @FXML
     private TextField textDesc;
@@ -30,6 +28,9 @@ public class ToDoListController {
 
     @FXML
     private TextField textComplete;
+
+    @FXML
+    private ListView<String> listDisplay;
 
     @FXML
     public void addItemButtonClicked() { addItem(); }
@@ -78,42 +79,50 @@ public class ToDoListController {
 
 
     public void addItem(){
+        ToDoItem t = new ToDoItem();
+
         //get items from TextField
-        getName();
-        getDate();
-        getDescription();
-        getComplete();
+        getDate(t);
+        getDesc(t);
+        getComplete(t);
 
         //validate credentials and add item to ToDoList
-        if(validateComplete() && validateDate() && validateDesc() && validateName()){
+        if(validateComplete() && validateDate() && validateDesc()){
             list.add(t);
             setTextOutput("Added item successfully.");
         }
         else setTextOutput("Make sure everything is correct.");
 
+        //display list
+        displayList();
+
         //clear texts
-        clearText(textName);
         clearText(textDesc);
         clearText(textDate);
         clearText(textComplete);
     }
 
     public void removeItem(){
+        ToDoItem t = new ToDoItem();
+
         //get item from TextField
-        getName();
-        getComplete();
-        getDate();
-        getDescription();
+        getDesc(t);
+        getComplete(t);
+        getDate(t);
 
         //remove it
-        if(list.contains(t)){
-            list.remove(t);
-            setTextOutput("Successfully removed item.");
+        for(int i = 0;i < list.size();i++) {
+            if (list.get(i).desc.equalsIgnoreCase(t.desc)) {
+                list.remove(t);
+                setTextOutput("Successfully removed item.");
+                i--;
+            }
+            else setTextOutput("Item wasn't found in system.");
         }
-        else setTextOutput("Item wasn't found in system.");
+
+        displayList();
 
         //clear texts
-        clearText(textName);
         clearText(textDesc);
         clearText(textDate);
         clearText(textComplete);
@@ -125,17 +134,21 @@ public class ToDoListController {
             i--;
         }
         setTextOutput("Successfully cleared list.");
+
+        displayList();
     }
 
     public void editDescription(){
+        ToDoItem t = new ToDoItem();
         //receive items from user
-        getName();
-        getDescription();
+        getDesc(t);
+        getDate(t);
+        getComplete(t);
 
         //if the list has the task, add new description
-        if (validateName() && validateDesc()){
+        if (validateDesc() && validateDate() && validateComplete()){
             for (int i = 0;i < list.size();i++){
-                if (list.get(i).name.equalsIgnoreCase(t.name)){
+                if (list.get(i).date.equalsIgnoreCase(t.date) && list.get(i).complete == t.complete){
                     list.get(i).desc = t.desc;
                     setTextOutput("Successfully changed desc.");
                     break;
@@ -143,57 +156,71 @@ public class ToDoListController {
                 else setTextOutput("Task wasn't found.");
             }
         }
-        else  setTextOutput("Make sure the task name is correct.");
+        else  setTextOutput("Make sure date and status are correct.");
+
+        displayList();
 
 
         //clear text
-        clearText(textName);
         clearText(textDesc);
         clearText(textDate);
         clearText(textComplete);
     }
 
     public void editDueDate(){
+        ToDoItem t = new ToDoItem();
         //get name and date
-        getName();
-        getDate();
+        getDesc(t);
+        getDate(t);
+        getComplete(t);
 
         //if the list has the task, add its due date
-        if (validateName() && validateDate()){
+        if (validateDesc() && validateDate() && validateComplete()){
             for (int i = 0;i < list.size();i++){
-                if (list.get(i).name.equalsIgnoreCase(t.name)){
+                if (list.get(i).desc.equalsIgnoreCase(t.desc) && list.get(i).complete == t.complete){
                     list.get(i).date = t.date;
-                    setTextOutput("Successfully changed desc.");
+                    setTextOutput("Successfully changed date.");
                     break;
                 }
                 else setTextOutput("Task wasn't found.");
             }
         }
-        else  setTextOutput("Make sure the task name is correct.");
+        else  setTextOutput("Make sure desc. and status are correct.");
+
+        displayList();
 
         //clear texts
-        clearText(textName);
         clearText(textDesc);
         clearText(textDate);
         clearText(textComplete);
 
     }
     public void markItemComplete(){
+        ToDoItem t = new ToDoItem();
+
         //receive the name of the ToDoList the user would like to edit from textDisplay
-        getName();
-        getComplete();
+        getDesc(t);
+        getDate(t);
+        getComplete(t);
 
 
-        if (validateComplete() && validateName()){
+        if (validateComplete() && validateDesc() && validateDate()){
             for (int i = 0;i < list.size();i++) {
-                if (t.name.equalsIgnoreCase(list.get(i).name)) {
+                if (t.desc.equalsIgnoreCase(list.get(i).desc) && t.date.equalsIgnoreCase(list.get(i).date)) {
                     list.get(i).complete = t.complete;
-                    setTextOutput("Task has been changed.");
+                    setTextOutput("Successfully changed status.");
                 }
                 else setTextOutput("Task wasn't found.");
             }
         }
-        else setTextOutput("Make sure the task name is correct.");
+        else setTextOutput("Make sure date and desc. are correct.");
+
+        displayList();
+
+        //clear texts
+        clearText(textComplete);
+        clearText(textDate);
+        clearText(textDesc);
     }
 
     public void displayAllItems(){
@@ -229,24 +256,18 @@ public class ToDoListController {
         t.setText("");
     }
 
-    public void getDescription(){
+    public void getDesc(ToDoItem t){
         t.desc = getText(textDesc);
     }
-    public void getDate(){
+    public void getDate(ToDoItem t) {
         t.date = getText(textDate);
     }
-    public void getName(){
-        t.name = getText(textName);
-    }
-    public void getComplete(){
+    public void getComplete(ToDoItem t){
         if (getText(textComplete).equalsIgnoreCase("Complete"))
             t.complete = true;
         else if (getText(textComplete).equalsIgnoreCase("Incomplete"))
             t.complete = false;
         else t.complete = false;
-    }
-    public boolean validateName(){
-        return !getText(textName).equals("");
     }
     public boolean validateDesc(){
         return getText(textDesc).length() > 0 && getText(textDesc).length() < 256;
@@ -265,5 +286,18 @@ public class ToDoListController {
     public boolean validateComplete(){
         return getText(textComplete).equalsIgnoreCase("Complete") ||
                 getText(textComplete).equalsIgnoreCase("Incomplete");
+    }
+    public String listToString(int i){
+        if (list.get(i).complete){
+            return String.format("%s\t%s\tComplete",list.get(i).desc,list.get(i).date);
+        }
+        else return String.format("%s\t%s\tIncomplete",list.get(i).desc,list.get(i).date);
+    }
+    public void displayList(){
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        for(int i = 0;i < list.size();i++){
+            observableList.add(listToString(i));
+        }
+        listDisplay.setItems(observableList);
     }
 }

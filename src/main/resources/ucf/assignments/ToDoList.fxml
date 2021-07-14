@@ -3,8 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -106,19 +105,11 @@
          <Font size="24.0" />
       </font>
    </Label>
-   <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Output:" GridPane.rowIndex="7" />
-   <TextField fx:id="textOutput" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-   <TextField fx:id="textName" promptText="Enter name of task" GridPane.rowIndex="2" />
-   <TextField fx:id="textDesc" promptText="Enter description" GridPane.rowIndex="3" />
-   <TextField fx:id="textDate" promptText="Enter date YYYY-MM-DD" GridPane.rowIndex="4" />
+   <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Output:" GridPane.rowIndex="6" />
+   <TextField fx:id="textOutput" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+   <TextField fx:id="textDesc" promptText="Enter description" GridPane.rowIndex="2" />
+   <TextField fx:id="textDate" promptText="Enter date YYYY-MM-DD" GridPane.rowIndex="3" />
    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearListButtonClicked" text="Clear List" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-   <TextField fx:id="textComplete" promptText="Complete or incomplete" GridPane.rowIndex="5" />
-   <TableView accessibleRole="TEXT_FIELD" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8" GridPane.rowSpan="2147483647">
-     <columns>
-       <TableColumn prefWidth="75.0" text="C1" />
-       <TableColumn prefWidth="75.0" text="C2" />
-         <TableColumn prefWidth="75.0" text="C3" />
-         <TableColumn prefWidth="75.0" text="C4" />
-     </columns>
-   </TableView>
+   <TextField fx:id="textComplete" promptText="Complete or incomplete" GridPane.rowIndex="4" />
+   <ListView fx:id="listDisplay" prefHeight="31.0" prefWidth="297.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="8" GridPane.rowSpan="2147483647" />
 </GridPane>

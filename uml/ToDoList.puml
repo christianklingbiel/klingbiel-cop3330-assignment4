@@ -6,16 +6,16 @@ class ToDoList {
     + start()
 }
 
-class ToDo {
-    - Title: String
-    - Items: String[]
+class ToDoItem {
+    - desc: String
+    - date: String
+    - complete: boolean
 }
 
 class ToDoListController {
-    t: ToDoItem
-    list: List<ToDoItem>
+    - list: List<ToDoItem>
+    - savedList: List<ToDoItem>
     - textOutput: TextField
-    - textName: TextField
     - textDesc: TextField
     - textDate: TextField
     - textComplete: TextField
@@ -46,13 +46,21 @@ class ToDoListController {
     + getText(TextField t)
     + setTextOutput(String text)
     + clearText(TextField t)
-    +
+    + getDesc(TextField t)
+    + getDate(TextField t)
+    + getComplete(TextField t)
+    + validateDesc()
+    + validateDate()
+    + validateComplete()
+    + listToString(int i)
+    + displayList(List<ToDoItem> list)
+
 }
 
 javafx.Application <|-- ToDoList
 
 ToDoList - ToDoListController
 
-ToDoListController *-- ToDo
+ToDoListController *-- ToDoItem
 
 @enduml

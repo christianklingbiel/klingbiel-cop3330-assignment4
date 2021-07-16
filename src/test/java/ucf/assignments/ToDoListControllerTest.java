@@ -9,107 +9,135 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ToDoListControllerTest {
+class ToDoListControllerTest extends ToDoListController{
 
     @Test
-    void addToDoList() {
-        //make a new to do list controller
-        //initialize addToDoListButtonClicked to some non-blank value
-        //call the addToDoList function
-        //get the value resultDisplay
-        //assert that the new ToDoList was added to the list of ToDoList
+    void addItemTest(){
+        //set texts to valid credentials
+        textDesc.setText("Laundry");
+        textDate.setText("2021-07-10");
+        textComplete.setText("Complete");
+
+        //call method
+        addItem();
+
+        //assert that the texts in the same if statement as the added list is the same as the one provided
+        assertEquals("Added item successfully.", getText(textOutput));
     }
 
     @Test
-    void removeToDoList(){
-        //make a new to do list controller
-        //initialize removeToDoListButtonClicked to some non-blank value
-        //call the removeToDoList function
-        //get the value resultDisplay
-        //assert that the new ToDoList was removed to the list of ToDoList
-    }
-
-    @Test
-    void editToDoListTitle(){
-        //make a new to do list controller
-        //initialize editToDoListTitleButtonClicked
-        //call the editToDoListTitle function
-        //get the value resultDisplay
-        //assert that the new ToDoList title equals the resultDisplay value
-    }
-
-    @Test
-    void addItem(){
-        //make a new ToDoList using addToDoList()
-        //call addItem()
-        //assert the ToDoList has the same item as textDisplay
-    }
-
-    @Test
-    void removeItem(){
+    void removeItemTest(){
         //hard code a ToDoList with an item
+        ToDoItem t = new ToDoItem();
+        t.desc = "Laundry";
+        t.date = "2021-07-10";
+        t.complete = true;
+        list.add(t);
+
+        //texts also have same item
+        textDesc.setText("Laundry");
+        textDate.setText("2021-07-10");
+        textComplete.setText("Complete");
+
         //call removeItem() and remove the same item
+        removeItem();
+
         //assert that the ToDoList is blank
+        assertFalse(list.contains(t));
     }
 
     @Test
-    void editItemDescription(){
-        //hard code a ToDoList with an item and description
-        //call editItemDescription() and enter the new description
-        //assert that the item description is equal to textDisplay
+    void editDescriptionTest(){
+        //add item to list
+        ToDoItem t = new ToDoItem();
+        t.desc = "Laundry";
+        t.date = "2021-07-10";
+        t.complete = true;
+        list.add(t);
+
+        //set text to new description
+        textDesc.setText("Wash clothes ONLY");
+        textDate.setText("2021-07-10");
+        textComplete.setText("Complete");
+
+        //call editDescription
+        editDescription();
+
+        //assert description changed
+        assertEquals("Successfully changed desc.", getText(textOutput));
     }
 
     @Test
-    void editItemDueDate(){
-        //hard code a ToDoList with an item and due date
-        //call editItemDueDate() and enter the new due date
-        //assert that the item due date is equal to textDisplay
+    void editDueDateTest(){
+        //add item to list
+        ToDoItem t = new ToDoItem();
+        t.desc = "Laundry";
+        t.date = "2021-07-10";
+        t.complete = true;
+        list.add(t);
+
+        //set text to new description
+        textDesc.setText("Laundry");
+        textDate.setText("2021-07-11");
+        textComplete.setText("Complete");
+
+        //call editDueDate
+        editDueDate();
+
+        //assert description changed
+        assertEquals("Successfully changed date.", getText(textOutput));
     }
 
-    @Test
-    void markItemComplete(){
-        //hard code a ToDoList with an item that has boolean complete false
-        //call markItemComplete() and enter the ToDoList and item
-        //assert that the boolean value is true
-    }
 
     @Test
-    void displayAllItems(){
+    void markItemCompleteTest(){
+        //add item to list
+        ToDoItem t = new ToDoItem();
+        t.desc = "Laundry";
+        t.date = "2021-07-10";
+        t.complete = true;
+        list.add(t);
+
+        //set text to new description
+        textDesc.setText("Wash clothes ONLY");
+        textDate.setText("2021-07-10");
+        textComplete.setText("Incomplete");
+
+        //call markItems
+        markItemComplete();
+
+        //assert description changed
+        assertEquals("Successfully changed status.", getText(textOutput));
+    }
+
+
+    @Test
+    void displayAllItemsTest(){
         //hardcode several ToDoLists
         //ensure that the output follows a string format
     }
 
     @Test
-    void displayIncompletions(){
+    void displayIncompleteTest(){
         //hardcode several ToDoLists with at least one considered complete and incomplete by boolean complete either...
         //...being true or false respectively
         //assert that the print is only incomplete tasks
     }
 
     @Test
-    void displayCompletions(){
+    void displayCompletionsTest(){
         //hardcode several ToDoLists with at least one considered complete and incomplete by boolean complete either...
         //...being true or false respectively
         //assert that the print is only completed tasks
     }
 
     @Test
-    void saveItems(){
+    void saveItemsTest(){
         //consult TAs
     }
 
     @Test
-    void saveAllItems(){
-        //consult TAs
-    }
-
-    @Test
-    void loadSingleToDoList(){
-        //consult TAs
-    }
-
-    @Test
-    void loadMultToDoList(){
+    void loadListTest(){
         //consult TAs
     }
 

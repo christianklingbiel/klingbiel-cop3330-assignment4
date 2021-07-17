@@ -19,6 +19,7 @@ class ToDoListController {
     - textDesc: TextField
     - textDate: TextField
     - textComplete: TextField
+    - listDisplay: ListView<String>
 
     + addItemButtonClicked()
     + removeItemButtonClicked()
@@ -57,9 +58,35 @@ class ToDoListController {
 
 }
 
+class ToDoListControllerTest {
+    + addItemTest()
+    + removeItemTest()
+    + clearListTest()
+    + editDescriptionTest()
+    + editDueDateTest()
+    + markItemCompleteTest()
+    + displayAllItemsTest()
+    + displayIncompleteTest()
+    + displayCompletionsTest()
+    + saveItemsTest()
+    + loadListTest()
+    + getTextTest()
+    + setTextOutputTest()
+    + clearTextTest()
+    + getDescTest()
+    + getDateTest()
+    + getCompleteTest()
+    + validateDescTest()
+    + validateDateTest()
+    + validateCompleteTest()
+    + listDisplayTest()
+}
+
 javafx.Application <|-- ToDoList
 
 ToDoList - ToDoListController
+
+ToDoListController - ToDoListControllerTest
 
 ToDoListController *-- ToDoItem
 

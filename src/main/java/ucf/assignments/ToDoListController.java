@@ -14,6 +14,8 @@ import javafx.scene.control.TextField;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Boolean.compare;
+
 public class ToDoListController {
     public List<ToDoItem> list = new ArrayList<>();
     List<ToDoItem> savedList = new ArrayList<>();
@@ -105,27 +107,35 @@ public class ToDoListController {
     }
 
     public void removeItem(){
+        //make a tempList and new item
+        List <ToDoItem> temp = new ArrayList<>();
         ToDoItem t = new ToDoItem();
 
-        //get item from TextField
+        //get item from TextField and assign to t
         getDesc(t);
         getComplete(t);
         getDate(t);
 
-        for (int  i = 0;i < list.size();i++){
-            if (list.get(i).desc.equals(t.desc)){
-                list.remove(t);
-                setTextOutput("Removed item successfully.");
+        //for loop that runs through list to see if it finds a matching description
+        // - if it does not add to temp list
+        for(int i = 0;i < list.size();i++){
+            if(!list.get(i).desc.equalsIgnoreCase(t.desc)){
+                temp.add(list.get(i));
             }
-            else setTextOutput("Item not found in list.");
         }
 
+        //set list equals to temp
+        list = temp;
+
+        //display list
         displayList(list);
+        setTextOutput("Displaying new list.");
 
         //clear texts
         clearText(textDesc);
         clearText(textDate);
         clearText(textComplete);
+
     }
     public void clearList(){
         //for loop that flushes out list
@@ -230,13 +240,12 @@ public class ToDoListController {
     }
 
     public void displayIncomplete(){
-
         //make new list
         List <ToDoItem> listIncomplete = new ArrayList<>();
 
         //if item status is incomplete, add all items to new list
         for (int i = 0;i < list.size();i++){
-            if (!list.get(i).complete){
+            if (compare(list.get(i).complete,false) == 0){
                 listIncomplete.add(list.get(i));
             }
         }
@@ -254,7 +263,7 @@ public class ToDoListController {
 
         //if item status is incomplete, add all items to new list
         for (int i = 0;i < list.size();i++){
-            if (list.get(i).complete){
+            if (compare(list.get(i).complete,true) == 0){
                 listComplete.add(list.get(i));
             }
         }
@@ -275,6 +284,7 @@ public class ToDoListController {
         //loads saved list
         list.addAll(savedList);
         displayList(list);
+        setTextOutput("Loaded list");
     }
 
     public String getText(TextField t){
@@ -340,11 +350,13 @@ public class ToDoListController {
     }
 
     public String listToString(int i){
+        String c = "Complete";
+        String inc = "Incomplete";
         //determines the output of a toDoItem on a list by its status
         if (list.get(i).complete){
-            return String.format("%s\t%s\tComplete",list.get(i).desc,list.get(i).date);
+            return String.format("%s%32s%32s",list.get(i).desc,list.get(i).date,c);
         }
-        else return String.format("%s\t%s\tIncomplete",list.get(i).desc,list.get(i).date);
+        else return String.format("%s%32s%32s",list.get(i).desc,list.get(i).date,inc);
     }
 
     public void displayList(List<ToDoItem> list){

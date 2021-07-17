@@ -113,6 +113,5 @@
    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearListButtonClicked" text="Clear List" GridPane.columnIndex="3" GridPane.rowIndex="2" />
    <TextField fx:id="textComplete" promptText="Complete or incomplete" GridPane.rowIndex="4" />
    <ListView fx:id="listDisplay" prefHeight="31.0" prefWidth="297.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="8" GridPane.rowSpan="2147483647" />
-   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2147483647" GridPane.rowIndex="7">
-   </TabPane>
+   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2147483647" GridPane.rowIndex="7" />
 </GridPane>
